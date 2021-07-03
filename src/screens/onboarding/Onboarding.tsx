@@ -1,9 +1,11 @@
 import React from 'react'
 
-import Example from './components/Example'
+import Loading from './components/Loading'
+import Boarding from './components/Onboarding'
+
 
 const Onboarding = () => {
-  return <Example />
+  return <Boarding />
 }
 
 export default Onboarding

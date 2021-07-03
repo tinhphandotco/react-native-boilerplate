@@ -58,9 +58,9 @@ export default function App() {
       {isLoadingComplete ? (
         <SafeAreaProvider>
           <NativeBaseProvider theme={theme}>
-            {/* <Onboarding /> */}
+            <Onboarding />
             {/* <Register /> */}
-            <Login />
+            {/* <Login /> */}
             {/* <Navigation colorScheme={colorScheme} /> */}
             <StatusBar style={colorScheme === 'light' ? 'dark' : 'light'} />
           </NativeBaseProvider>
