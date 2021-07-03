@@ -10,6 +10,8 @@ import useCachedResources from './hooks/useCachedResources'
 // import Navigation from './navigation';
 
 import Onboarding from './screens/onboarding/Onboarding'
+import Register from './screens/register'
+import Login from './screens/login'
 
 import configureStore from './redux/configureStore'
 
@@ -27,7 +29,7 @@ export default function App() {
     colors: {
       // Add new color
       primary: {
-        50: '#E3F2F9',
+        50: '#E5EFFE',
         100: Colors.Colors.primary,
         200: '#A2D4EC',
         300: '#7AC1E4',
@@ -38,17 +40,16 @@ export default function App() {
         800: '#005885',
         900: '#003F5E',
       },
-      // Redefinig only one shade, rest of the color will remain same.
-      amber: {
-        400: '#d97706',
+      black: {
+        100: '#191B20',
       },
-      button: {
+      blue: {
         100: Colors.Colors.primary,
       },
     },
     config: {
       // Changing initialColorMode to 'dark'
-      initialColorMode: 'dark',
+      initialColorMode: 'light',
     },
   })
 
@@ -57,7 +58,9 @@ export default function App() {
       {isLoadingComplete ? (
         <SafeAreaProvider>
           <NativeBaseProvider theme={theme}>
-            <Onboarding />
+            {/* <Onboarding /> */}
+            {/* <Register /> */}
+            <Login />
             {/* <Navigation colorScheme={colorScheme} /> */}
             <StatusBar style={colorScheme === 'light' ? 'dark' : 'light'} />
           </NativeBaseProvider>
