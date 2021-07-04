@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react'
 import { Stack, Center } from 'native-base'
 
@@ -8,12 +7,17 @@ import Input from '~/components/core-ui/input'
 import ConfirmCheckBox from '~/components/confirm-checkbox'
 import Heading from '~/components/heading'
 
-function Register() {
+function Register({ navigation }: any) {
   const [direction, setDirection] = React.useState('column')
+
+  const onGoBack = () => {
+    navigation.navigate('Login')
+  }
+
   return (
     <>
-      <Heading goBack={true}>Register</Heading>
-      <Center flex={1} p={5}>
+      <Heading goBack={onGoBack}>Register</Heading>
+      <Center flex={1} p={5} bgColor={'white'}>
         <Stack width="100%">
           <Input
             label="Email"

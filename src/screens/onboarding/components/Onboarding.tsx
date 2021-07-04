@@ -1,7 +1,6 @@
-//@ts-nocheck
 import React from 'react'
 import { Dimensions } from 'react-native'
-import { Stack, Center, Link, Text, HStack } from 'native-base'
+import { Center, Text } from 'native-base'
 import EveryWhere from '~/components/icons/EveryWhere'
 import EveryTime from '~/components/icons/EveryTime'
 import Schedule from '~/components/icons/Schedule'
@@ -9,9 +8,9 @@ import Carousel, { Pagination } from 'react-native-snap-carousel'
 
 import Button from '~/components/core-ui/button'
 
-export function GroupButton() {
+export function GroupButton({ onStart }: any) {
   const [activeSlide, setActiveSlide] = React.useState(0)
-  let isCarousel = React.useRef(null)
+  const isCarousel = React.useRef<any>()
 
   const SLIDER_WIDTH = Dimensions.get('window').width * 0.8
   const ITEM_WIDTH = Math.round(SLIDER_WIDTH)
@@ -35,8 +34,13 @@ export function GroupButton() {
 
   const next = () => {
     if (activeSlide < 2) {
-			isCarousel.snapToItem(activeSlide + 1)
+      if (isCarousel.current) {
+        isCarousel.current.snapToItem(activeSlide + 1)
+      }
+
       setActiveSlide(activeSlide + 1)
+    } else {
+      onStart()
     }
   }
 
@@ -53,17 +57,13 @@ export function GroupButton() {
           marginHorizontal: 0,
           backgroundColor: '#0A5BC8',
         }}
-        inactiveDotOpacity={0.4}
-        inactiveDotScale={0.6}
         tappableDots={false}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
-        ref={isCarousel}
-        useScrollView={true}
       />
     )
   }
-  const _renderItem = ({ item, index }) => {
+  const _renderItem = ({ item, index }: any) => {
     return (
       <>
         {item.Image}
@@ -72,11 +72,11 @@ export function GroupButton() {
           width="100%"
           fontWeight="500"
           textAlign="center"
-          fontSize="22px"
+          fontSize={22}
         >
           {item.text}
         </Text>
-        <Text my={3} width="100%" textAlign="center" fontSize="16px">
+        <Text my={3} width="100%" textAlign="center" fontSize={16}>
           {item.subText}
         </Text>
       </>
@@ -92,7 +92,6 @@ export function GroupButton() {
         onSnapToItem={(index) => setActiveSlide(index)}
         layout="default"
         layoutCardOffset={9}
-        // ref={isCarousel}
         inactiveSlideShift={0}
         useScrollView={false}
         containerCustomStyle={{
@@ -101,10 +100,10 @@ export function GroupButton() {
         contentContainerCustomStyle={{
           alignItems: 'center',
           justifyContent: 'center',
-				}}
-				ref={(c) => { isCarousel = c;}}
-
-        scrollTo={2}
+        }}
+        ref={(c) => {
+          isCarousel.current = c
+        }}
       />
       {pagination()}
 
@@ -118,10 +117,10 @@ export function GroupButton() {
   )
 }
 
-export default () => {
+export default ({ onStart }: any) => {
   return (
-    <Center flex={1}>
-      <GroupButton />
+    <Center flex={1} bgColor={'white'}>
+      <GroupButton onStart={onStart} />
     </Center>
   )
 }

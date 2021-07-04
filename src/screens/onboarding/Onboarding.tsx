@@ -1,11 +1,14 @@
 import React from 'react'
 
-import Loading from './components/Loading'
+// import Loading from './components/Loading'
 import Boarding from './components/Onboarding'
 
+const Onboarding = ({ navigation }: any) => {
+  const onStart = () => {
+    navigation.navigate('Login')
+  }
 
-const Onboarding = () => {
-  return <Boarding />
+  return <Boarding onStart={onStart} />
 }
 
 export default Onboarding

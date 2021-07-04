@@ -5,9 +5,11 @@ import { Provider } from 'react-redux'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { NativeBaseProvider, extendTheme } from 'native-base'
 
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
 import useCachedResources from './hooks/useCachedResources'
 // import useColorScheme from './hooks/useColorScheme';
-// import Navigation from './navigation';
 
 import Onboarding from './screens/onboarding/Onboarding'
 import Register from './screens/register'
@@ -18,6 +20,8 @@ import configureStore from './redux/configureStore'
 import * as Colors from './themes/colors'
 
 const store = configureStore()
+
+const Stack = createStackNavigator()
 
 export default function App() {
   const isLoadingComplete = useCachedResources()
@@ -58,10 +62,33 @@ export default function App() {
       {isLoadingComplete ? (
         <SafeAreaProvider>
           <NativeBaseProvider theme={theme}>
-            <Onboarding />
-            {/* <Register /> */}
-            {/* <Login /> */}
-            {/* <Navigation colorScheme={colorScheme} /> */}
+            <NavigationContainer>
+              <Stack.Navigator initialRouteName="Onboarding">
+                <Stack.Screen
+                  name="Onboarding"
+                  component={Onboarding}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+
+                <Stack.Screen
+                  name="Login"
+                  component={Login}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+
+                <Stack.Screen
+                  name="Register"
+                  component={Register}
+                  options={{
+                    headerShown: false,
+                  }}
+                />
+              </Stack.Navigator>
+            </NavigationContainer>
             <StatusBar style={colorScheme === 'light' ? 'dark' : 'light'} />
           </NativeBaseProvider>
         </SafeAreaProvider>

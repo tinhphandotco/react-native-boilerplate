@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  FormControl,
-  Input,
-  Stack,
-  Center,
-  NativeBaseProvider,
-} from 'native-base'
+import { FormControl, Input, Stack } from 'native-base'
 export const Example = ({
   label = 'Phone',
   placeholder = 'Enter your phone',

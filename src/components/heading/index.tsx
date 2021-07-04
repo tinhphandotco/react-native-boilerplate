@@ -1,25 +1,33 @@
 import React from 'react'
-import { Heading, HStack, ChevronLeftIcon, Box } from 'native-base'
+import { Icon, IconButton, Heading, HStack } from 'native-base'
+
+import { AntDesign } from '@expo/vector-icons'
 
 function Example({ children, goBack = false }: any) {
   return (
-    <HStack p={5} mt={'82px'}>
-      {goBack && (
-        <Box
+    <HStack p={5} pt={'82px'} bgColor={'white'} position={'relative'}>
+      {goBack !== false && (
+        <IconButton
+          variant="solid"
+          onPress={goBack}
           bg="primary.50"
           width={'32px'}
           height="32px"
           borderRadius="5px"
           justifyContent="center"
           alignContent="center"
-          pt={2}
-          pl={1}
           position="absolute"
           left={5}
-          top={5}
-        >
-          <ChevronLeftIcon color="primary.100" />
-        </Box>
+          top={'82px'}
+          icon={
+            <Icon
+              size="xs"
+              as={<AntDesign name="left" />}
+              color="primary.100"
+            />
+          }
+          zIndex={1}
+        />
       )}
 
       <Heading

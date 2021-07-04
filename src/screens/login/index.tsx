@@ -9,15 +9,15 @@ import FacebookIcon from '~/components/icons/Facebook'
 import GoogleIcon from '~/components/icons/Google'
 import AppleIcon from '~/components/icons/Apple'
 
-function Register() {
+function Login({ navigation }: any) {
   const goToRegister = () => {
-    console.log('register')
+    navigation.navigate('Register')
   }
 
   return (
     <>
       <Heading>Login</Heading>
-      <Center flex={1} p={5}>
+      <Center flex={1} p={5} bgColor={'white'}>
         <Stack width="100%">
           <Input
             label="Email"
@@ -75,4 +75,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Login
